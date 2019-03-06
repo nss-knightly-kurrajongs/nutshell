@@ -13,9 +13,22 @@ class Nav extends Component {
         <ul className="nav nav-pills">
         </ul>
           <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Nutshell
-            </Link>
+            <Link className="nav-link" to="/">Nutshell</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/chats">Locations</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/events">Events</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/newss">Newss</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/tasks">Tasks</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/movies">Movies</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/news">
