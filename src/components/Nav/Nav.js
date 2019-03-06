@@ -11,12 +11,29 @@ class Nav extends Component {
     return (
       <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
         <ul className="nav nav-pills">
+        </ul>
           <li className="nav-item">
             <Link className="nav-link" to="/">
               Nutshell
             </Link>
           </li>
-        </ul>
+          <li className="nav-item">
+            <Link className="nav-link" to="/news">
+              News
+            </Link>
+            <Link className="nav-link" to="/chat">
+              Chat
+            </Link>
+            <Link className="nav-link" to="/tasks">
+              Tasks
+            </Link>
+            <Link className="nav-link" to="/events">
+              Events
+            </Link>
+            <Link className="nav-link" to="/movies">
+              Movies
+            </Link>
+          </li>
         <a className="nav-link">Aloha 🌺 {this.props.activeUser.username}</a>
         <button
           type="button"
