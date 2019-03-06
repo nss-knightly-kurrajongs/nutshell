@@ -12,9 +12,22 @@ class Nav extends Component {
       <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
         <ul className="nav nav-pills">
           <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Nutshell
-            </Link>
+            <Link className="nav-link" to="/">Nutshell</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/chats">Locations</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/events">Events</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/newss">Newss</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/tasks">Tasks</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/movies">Movies</Link>
           </li>
         </ul>
         <a className="nav-link">Aloha 🌺 {this.props.activeUser.username}</a>
