@@ -52,7 +52,7 @@ export default class MovieForm extends Component {
               className="form-control"
               onChange={this.handleFieldChange}
               id="movieName"
-              placeholder="Movie Name"
+              placeholder="movie name"
             />
           </div>
           <div className="form-group">
@@ -62,32 +62,30 @@ export default class MovieForm extends Component {
               required
               className="form-control"
               onChange={this.handleFieldChange}
-              id="LeadActor"
-              placeholder="Lead Actor"
+              id="leadActor"
+              placeholder="lead actor"
             />
           </div>
           <div className="form-group">
             <label htmlFor="year released">Year Released</label>
-            <select
-              defaultValue=""
-              name="YearReleased"
-              id="movieId"
+
+
+            <input
+              type="text"
+              required
+              className="form-control"
               onChange={this.handleFieldChange}
-            >
-              <option value="">Select a Movie!</option>
-              {this.props.movies.map(e => (
-                <option key={e.id} id={e.id} value={e.id}>
-                  {e.name}
-                </option>
-              ))}
-            </select>
+              id="yearReleased"
+              placeholder="year released"
+            />
+
           </div>
           <button
             type="submit"
             onClick={this.constructNewMovie}
             className="btn btn-primary"
           >
-            Submit
+            Save Movie
           </button>
         </form>
       </React.Fragment>

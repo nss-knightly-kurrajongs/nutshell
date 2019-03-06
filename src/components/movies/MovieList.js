@@ -12,12 +12,12 @@ export default class MovieList extends Component {
                           onClick={() => {
                               this.props.history.push("/movies/new")}
                           }>
-                      New movie
+                      Add a New Movie
                   </button>
 
               </div>
       <section className="movies">
-      
+
         {
           this.props.movies.map(movie =>
             <MovieCard key={movie.id} movie={movie} {...this.props} />
