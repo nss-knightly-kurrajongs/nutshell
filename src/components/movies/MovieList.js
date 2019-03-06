@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 
-export default class AnimalList extends Component {
+export default class MovieList extends Component {
   render () {
       return (
           <React.Fragment>
@@ -12,11 +12,12 @@ export default class AnimalList extends Component {
                           onClick={() => {
                               this.props.history.push("/movies/new")}
                           }>
-                      new movie
+                      New movie
                   </button>
 
               </div>
       <section className="movies">
+      
         {
           this.props.movies.map(movie =>
             <MovieCard key={movie.id} movie={movie} {...this.props} />

@@ -6,7 +6,8 @@ export default class MovieForm extends Component {
   state = {
     movieName: "",
     leadActor: "",
-    yearReleased: ""
+    yearReleased: "",
+    id: ""
   };
 
   // Update state whenever an input field is edited
@@ -23,7 +24,7 @@ export default class MovieForm extends Component {
   constructNewMovie = evt => {
     evt.preventDefault();
     if (this.state.movie === "") {
-      window.alert("Please select a caretaker");
+      window.alert("Please select a movie");
     } else {
       const movie = {
         movieName: this.state.movieName,
@@ -44,32 +45,32 @@ export default class MovieForm extends Component {
       <React.Fragment>
         <form className="movieForm">
           <div className="form-group">
-            <label htmlFor="movieName">Movie name</label>
+            <label htmlFor="movieName">Movie Name</label>
             <input
               type="text"
               required
               className="form-control"
               onChange={this.handleFieldChange}
               id="movieName"
-              placeholder="Movie name"
+              placeholder="Movie Name"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="breed">Breed</label>
+            <label htmlFor="Lead Actor">Lead Actor</label>
             <input
               type="text"
               required
               className="form-control"
               onChange={this.handleFieldChange}
-              id="breed"
-              placeholder="Breed"
+              id="LeadActor"
+              placeholder="Lead Actor"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="employee">Assign to caretaker</label>
+            <label htmlFor="year released">Year Released</label>
             <select
               defaultValue=""
-              name="movie"
+              name="YearReleased"
               id="movieId"
               onChange={this.handleFieldChange}
             >

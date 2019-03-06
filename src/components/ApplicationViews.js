@@ -1,64 +1,44 @@
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
+import MovieList from "./movies/MovieList"
+import MovieForm from "./movies/MovieForm"
+import MovieManager from "."
+
 class ApplicationViews extends Component {
-  state = {}
-  componentDidMount() {}
-  render() {
-    console.log(this.props.activeUser)
-    return (
+    state = {
+        movies: []
+    }
+    componentDidMount() {
+        console.log("componentDidMount -- ApplicationViews")
+     }
+
+
+
+
+    render() {
+        console.log(this.props.activeUser)
+        return (
             <React.Fragment>
-                <Route exact path="/" render={(props) => {
-                    return <LocationList locations={this.state.locations} />
-                }} />
-                <Route exact path="/chats" render={(props) => {
-                    return <ChatList animals={this.state.animals}
-                                owners={this.state.owners}
-                                animalOwners={this.state.animalOwners}
-                                dischargeAnimal={this.dischargeAnimal}
-                                loadAnimals={this.getAllAnimalsAgain}
-                                {...props}
-                                />
-                }} />
-                <Route exact path="/events" render={(props) => {
-                    return <EventList
-                                animals={this.state.animals}
-                                fireEmployee={this.fireEmployee}
-                                employees={this.state.employees}
-                                owners={this.state.owners}
-                                animalOwners={this.state.animalOwners}
-                                />
-                }} />
-                <Route exact path="/newss" render={(props) => {
-                    return <NewsList
-                                animals={this.state.animals}
-                                fireEmployee={this.fireEmployee}
-                                employees={this.state.employees}
-                                owners={this.state.owners}
-                                animalOwners={this.state.animalOwners}
-                                />
-                }} />
-                <Route exact path="/tasks" render={(props) => {
-                    return <TaskList
-                                animals={this.state.animals}
-                                fireEmployee={this.fireEmployee}
-                                employees={this.state.employees}
-                                owners={this.state.owners}
-                                animalOwners={this.state.animalOwners}
-                                />
-                }} />
+
                 <Route exact path="/movies" render={(props) => {
                     return <MovieList
-                                animals={this.state.animals}
-                                fireEmployee={this.fireEmployee}
-                                employees={this.state.employees}
-                                owners={this.state.owners}
-                                animalOwners={this.state.animalOwners}
-                                />
+                        {...props}
+                        movies={this.state.movies}
+                        deleteMovie={this.deleteMovie}
+                        loadMovies={this.getAllMovies}
+
+                    />
+
+                }} />
+                <Route path="/movies/new" render={(props) => {
+                    return <MovieForm {...props}
+                        addMovie={this.addMovie}
+                        movies={this.state.movies} />
                 }} />
 
             </React.Fragment>
         )
-  }
+    }
 }
 
 export default ApplicationViews

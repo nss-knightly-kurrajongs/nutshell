@@ -11,7 +11,7 @@ export default class MovieCard extends Component {
                     <h5 className="card-title">
 
                         {this.props.movie.name}
-                        <Link className="nav-link" to={`/animals/${this.props.movie.id}`}>Details</Link>
+                        <Link className="nav-link" to={`/movies/${this.props.movie.id}`}>Details</Link>
                         <a href="#"
                             onClick={() => this.props.deleteMovie(this.props.movie.id)}
                             className="card-link">Delete</a>
