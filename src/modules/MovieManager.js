@@ -22,5 +22,14 @@ export default {
       },
       body: JSON.stringify(newMovie)
     }).then(data => data.json())
+  },
+  put(editedMovie) {
+    return fetch(`${remoteURL}/movies/${editedMovie.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedMovie)
+    }).then(data => data.json());
   }
 }

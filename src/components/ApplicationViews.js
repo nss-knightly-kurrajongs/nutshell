@@ -4,6 +4,7 @@ import MovieList from "./movies/MovieList"
 import MovieForm from "./movies/MovieForm"
 import MovieDetail from "./movies/MovieDetail"
 import MovieManager from "../modules/MovieManager"
+import MovieEditForm from "./movies/MovieEditForm"
 
 class ApplicationViews extends Component {
     state = {
@@ -28,18 +29,27 @@ class ApplicationViews extends Component {
 
     deleteMovie = (id) => {
         return MovieManager.removeAndList(id)
-                    .then(movies => this.setState({
-                        movies: movies
-                    })
-                    )
-            }
+            .then(movies => this.setState({
+                movies: movies
+            })
+            )
+    }
 
-     getAllMoviesAgain = () => {
-         fetch("http://localhost:8088/movies")
-                    .then(r => r.json())
-                    .then(movies => this.setState({ movies: movies }))
-            }
+    getAllMoviesAgain = () => {
+        fetch("http://localhost:8088/movies")
+            .then(r => r.json())
+            .then(movies => this.setState({ movies: movies }))
+    }
 
+    updateMovie = (editedMovieObject) => {
+        return MovieManager.put(editedMovieObject)
+        .then(() => MovieManager.getAll())
+        .then(movies => {
+          this.setState({
+            movies: movies
+          })
+        });
+      };
 
 
     componentDidMount() {
@@ -49,7 +59,7 @@ class ApplicationViews extends Component {
 
         MovieManager.getAll()
             .then(movies => newState.movies = movies)
-     }
+    }
 
 
 
@@ -77,11 +87,16 @@ class ApplicationViews extends Component {
                         addMovie={this.addMovie}
                         movies={this.state.movies}
                         userId={this.state.userId}
-                        />
+                    />
                 }} />
-                 {/* <Route path="/movies/:movieId(\d+)" render={(props) => {
-                    return <MovieDetail {...props} deleteMovie={this.deleteMovie} movie={this.state.movie} />
+                {/* <Route path="/movies/:movieId(\d+)" render={(props) => {
+                    return <MovieDetail {...props} deleteMovie={this.deleteMovie} movie={this.state.movie} id={this.state.id}/>
                 }} /> */}
+                <Route
+                    path="/movies/:movieId(\d+)/edit" render={props => {
+                        return <MovieEditForm {...props} movies={this.state.movies} updateMovie={this.updateMovie} />
+                    }}
+                />
 
             </React.Fragment>
         )
