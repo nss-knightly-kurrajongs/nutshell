@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
-import './News.css'
+
 
 class NewsCard extends Component {
 
@@ -8,34 +8,34 @@ class NewsCard extends Component {
 
         return (
             <React.Fragment>
-                <div key={this.props.news.id} className="card">
+                <div key={this.props.News.id} className="card">
                     <div className="card-body">
                         <h5 className="card-title">
-                            <div>{this.props.news.newsTitle}</div>
-                            <div>{this.props.news.synopsis}</div>
-                            <div>{this.props.news.url}</div>
-                            <div>{this.props.news.timeStamp}</div>
+                            <div>{this.props.News.newsTitle}</div>
+                            <div>{this.props.News.timeStamp}</div>
+                            <div>{this.props.News.synopsis}</div>
+                            <div>{this.props.News.url}</div>
                             <button
                                 type="button"
                                 className="btn btn-success"
                                 onClick={() => {
-                                    this.props.history.push(`/news/${this.props.news.id}/edit`);
+                                    this.props.history.push(`/news/${this.props.News.id}/edit`);
                                 }}
                                 >
                                 Edit
                             </button>
 
                             {
-                                (this.props.hasOwnProperty("deleteNews"))
+                                (this.props.hasOwnProperty("removeNews"))
                                     ? <button
-                                        onClick={() => this.props.deleteNews(this.props.news.id)}
+                                        onClick={() => this.props.removeNews(this.props.News.id)}
                                         className="card-link">Delete</button>
                                     : null
                             }
 
                         </h5>
                     </div>
-                    <Link className="nav-link" to={`/news/${this.props.news.id}`}>Details</Link>
+                    <Link className="nav-link" to={`/news/${this.props.News.id}`}>Details</Link>
                 </div>
 
             </React.Fragment>

@@ -21,10 +21,10 @@ export default {
           body: JSON.stringify(newNews)
         }).then(data => data.json())
     },
-    getSessionStorage{
-        
-    }
-    sessionStorage.setItem("credentials", parseInt(user.id))
+    // getSessionStorage{
+
+    // }
+    // sessionStorage.setItem("credentials", parseInt(user.id))
     updateNews(editedNews) {
         return fetch(`${Settings.remoteURL}/news/${editedNews.id}`, {
           method: "PUT",

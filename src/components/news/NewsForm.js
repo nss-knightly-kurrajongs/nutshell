@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./News.css";
+
 
 export default class NewsForm extends Component {
   // Set initial state
@@ -15,7 +15,6 @@ export default class NewsForm extends Component {
   handleFieldChange = evt => {
     const stateToChange = {};
     stateToChange[evt.target.id] = evt.target.value;
-    debugger;
     this.setState(stateToChange);
   }
 
@@ -25,27 +24,28 @@ export default class NewsForm extends Component {
      */
   constructNewNews = evt => {
     evt.preventDefault()
-    
-      const news = {
-        newsTitle: this.state.newsTitle,
-        synopsis: this.state.synopsis,
-        url: this.state.url,
-        timestamp: this.state.timestamp,
-        // Make sure the employeeId is saved to the database as a number since it is a foreign key.
-        userId: parseInt(this.state.userId)
+    const News = {
+      id: this.props.match.params.newsId,
+      newsTitle: this.state.newsTitle,
+      synopsis: this.state.synopsis,
+      url: this.state.url,
+      timestamp: this.state.timestamp,
+      userId: this.state.userId
+    }
 
-      }
-      // Create the animal and redirect user to animal list
-      this.props
-        .addNews(news)
-        .then(() => this.props.history.push("/news"));
+    // Create the animal and redirect user to animal list
+    this.props
+      .addNews(News)
+      .then(() => this.props.history.push("/news"));
   }
 
+
   render() {
+
     return (
       <React.Fragment>
-        <form className="newsForm">
-        <div className="form-group">
+        <form className="animalForm">
+          <div className="form-group">
             <label htmlFor="newsTitle">News Title</label>
             <input
               type="text"
@@ -53,7 +53,7 @@ export default class NewsForm extends Component {
               className="form-control"
               onChange={this.handleFieldChange}
               id="newsTitle"
-              value={this.state.newsTitle}
+              placeholder="News Title"
             />
           </div>
           <div className="form-group">
@@ -64,7 +64,7 @@ export default class NewsForm extends Component {
               className="form-control"
               onChange={this.handleFieldChange}
               id="synopsis"
-              value={this.state.synopsis}
+              placeholder="synopsis"
             />
           </div>
           <div className="form-group">
@@ -75,7 +75,7 @@ export default class NewsForm extends Component {
               className="form-control"
               onChange={this.handleFieldChange}
               id="url"
-              value={this.state.url}
+              placeholder="url"
             />
           </div>
           <div className="form-group">
@@ -86,7 +86,7 @@ export default class NewsForm extends Component {
               className="form-control"
               onChange={this.handleFieldChange}
               id="timestamp"
-              value={this.state.timestamp}
+              placeholder="timestamp"
             />
           </div>
           <div className="form-group">
@@ -97,7 +97,6 @@ export default class NewsForm extends Component {
               className="form-control"
               onChange={this.handleFieldChange}
               id="userId"
-              value={this.state.userId}
             />
           </div>
           <button
@@ -109,6 +108,6 @@ export default class NewsForm extends Component {
           </button>
         </form>
       </React.Fragment>
-    );
+    )
   }
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import "./NewsList.css"
 import NewsCard from './NewsCard';
 
-
 class NewsList extends Component {
 
 
@@ -20,9 +19,9 @@ class NewsList extends Component {
             </div>
             <article className="news">
                 {
-                    this.props.news.map(news =>
-                        <NewsCard key={`news-${news.id}`}
-                            news={news}
+                    this.props.news.map(News =>
+                        <NewsCard key={`News-${News.id}`}
+                            News={News}
                             removeNews={this.props.removeNews}
                             history={this.props.history}
                             />
