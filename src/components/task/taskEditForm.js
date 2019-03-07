@@ -77,7 +77,6 @@ export default class TaskEditForm extends Component {
           <button
             type="submit"
             onClick={this.EditTask}
-
             className="list-button">Update Task
               </button>
 

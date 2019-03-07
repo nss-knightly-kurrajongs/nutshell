@@ -33,7 +33,6 @@ class ApplicationViews extends Component {
         .then(()=>{
             return taskManager.getAll()
         })
-
         .then(tasks =>
             this.setState({
                 tasks:tasks

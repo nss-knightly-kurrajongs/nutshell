@@ -30,6 +30,7 @@ export default class TaskAddForm extends Component {
             completed: false
           }
         this.props.addTask(newTask)
+        .then(()=>this.props.history.push("./taskList"))
     }
       }
 
