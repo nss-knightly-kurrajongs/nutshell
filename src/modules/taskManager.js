@@ -9,8 +9,8 @@ export default {
       method: "DELETE"
     }).then(e => e.json())
   },
-  getAll() {
-    return fetch(`${Settings.remoteURL}/tasks`).then(e => e.json())
+  getAll(id) {
+    return fetch(`${Settings.remoteURL}/tasks?userId=${id}`).then(e => e.json())
   },
   addTask(obj) {
     return fetch(`${Settings.remoteURL}/tasks`, {

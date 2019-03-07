@@ -9,11 +9,14 @@ class ApplicationViews extends Component {
     state = {
         tasks:[]
     }
+    aUserId = this.props.activeUserId()
+
     addTask = task => {
         return taskManager.addTask(task)
         .then(()=>{
-            return taskManager.getAll()
-        })
+            return taskManager.getAll(this.aUserId)
+
+            })
         .then(tasks =>
             this.setState({
                 tasks:tasks
@@ -31,7 +34,7 @@ class ApplicationViews extends Component {
         // console.log("task: ", task)
         return taskManager.updateTask(task)
         .then(()=>{
-            return taskManager.getAll()
+            return taskManager.getAll(this.aUserId)
         })
         .then(tasks =>
             this.setState({
@@ -41,12 +44,14 @@ class ApplicationViews extends Component {
     componentDidMount() {
         const newState={}
 
-        taskManager.getAll()
+        taskManager.getAll(this.aUserId)
         .then((tasks)=>newState.tasks = tasks)
         .then(() => this.setState(newState))
      }
 
     render() {
+
+        console.log("active user, ", this.props.activeUserId())
         return (
             <React.Fragment>
                 {/* <Route exact path="/" render={(props) => {
