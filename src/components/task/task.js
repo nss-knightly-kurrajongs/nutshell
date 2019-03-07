@@ -1,52 +1,19 @@
 import React, { Component } from "react";
-import ApplicationViews from "../ApplicationViews"
-import taskManager from ".../taskManager"
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
-export default class TaskAddForm extends Component {
+export default class TaskCard extends Component {
+    render(){
+        // const task = this.props.match.params.tasks.find(a => a.id === parseInt(this.props.match.params.id)) || {}
 
-    state={
-        userId : "",
-        taskName: "",
-        dateToComplete: "",
-        completed: false
-    }
-    handleFieldChange = evt => {
-        const stateToChange = {};
-        stateToChange[evt.target.id] = evt.target.value;
-        this.setState(stateToChange);
-      }
-
-      makeNewTask = evt => {
-          evt.preventDefault();
-
-          if (this.state.taskName === "") {
-            window.alert("Please enter a task");
-          } else if(this.state.dateToComplete === ""){
-              window.alert("enter an expected completion date")
-          }else
-          {
-          const newTask = {
-            userId: parseInt(this.state.userId),
-            taskName: this.state.taskName,
-            dateToComplete: this.state.dateToComplete,
-            completed: false
-          }
-        this.props.taskManager.addTask(newTask)
-        .then(()=>this.props.history.push("./taskList")))
-    }
-
-
-      render(){
-          return(
+        return(
             <React.Fragment>
-                <form class="form-new-task">
-                    <div className="form-group">
+                <div key={`task-${this.props.task.id}`} className="card">
+                <Link to={`/tasks/editForm/${this.props.task.id}`}>{this.props.task.taskName}</Link>
 
-                    </div>
-                </form>
-
+                <p>{this.props.task.dateToComplete}</p>
+                <p>{this.props.completed}</p>
+                </div>
             </React.Fragment>
-          )
-
-      }
+        )
+    }
 }

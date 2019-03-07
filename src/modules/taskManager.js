@@ -29,4 +29,13 @@ export default {
   getDone() {
     return fetch(`${Settings.remoteURL}/tasks?taskComplete='true'`).then(e => e.json())
   },
+  updateTask(task){
+    return fetch(`${Settings.remoteURL}/tasks/${task.id}`,{
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(task)
+    })
+  }
 }
