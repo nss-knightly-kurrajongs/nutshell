@@ -90,9 +90,9 @@ export default class NewsForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="userId">userId</label>
             <input
-              type="text"
+              type="hidden"
+              value={}
               required
               className="form-control"
               onChange={this.handleFieldChange}
