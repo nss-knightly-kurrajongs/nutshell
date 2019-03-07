@@ -58,17 +58,8 @@ class ApplicationViews extends Component {
                     events: events
                 })
             );
-    put(editedEvent) {
-        return fetch(`http://localhost:8088/events/${editedEvent.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(editedEvent)
-        }).then(data => data.json());
-    }
     updateEvent = (editedEventObject) => {
-        return EventManager.addNewEvent(editedEventObject)
+        return EventManager.updateEvent(editedEventObject)
             .then(() => EventManager.getAll())
             .then(events => {
                 this.setState({

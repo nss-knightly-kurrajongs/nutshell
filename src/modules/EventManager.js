@@ -16,5 +16,14 @@ export default {
           },
           body: JSON.stringify(newEvent)
         }).then(data => data.json())
-    }
-  }
+    },
+updateEvent(editedEvent) {
+  return fetch(`${Settings.remoteURL}/news/${editedEvent.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(editedEvent)
+  }).then(data => data.json());
+}
+}
