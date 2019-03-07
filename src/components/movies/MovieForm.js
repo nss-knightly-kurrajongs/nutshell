@@ -7,7 +7,8 @@ export default class MovieForm extends Component {
     movieName: "",
     leadActor: "",
     yearReleased: "",
-    id: ""
+    id: "",
+    date: ""
   };
 
   // Update state whenever an input field is edited
@@ -29,8 +30,8 @@ export default class MovieForm extends Component {
       const movie = {
         movieName: this.state.movieName,
         leadActor: this.state.leadActor,
-        yearReleased: this.state.yearReleased
-
+        yearReleased: this.state.yearReleased,
+        date: Math.floor(Date.now() / 1000)
       };
 
       // Create the animal and redirect user to animal list

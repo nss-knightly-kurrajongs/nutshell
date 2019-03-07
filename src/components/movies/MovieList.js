@@ -19,7 +19,7 @@ export default class MovieList extends Component {
       <section className="movies">
 
         {
-          this.props.movies.map(movie =>
+          this.props.movies.sort((a,b) => {return b.yearReleased - a.yearReleased}).map(movie =>
             <MovieCard key={movie.id} movie={movie} {...this.props} />
         )
         }
