@@ -14,7 +14,7 @@ export default class EventCard extends Component {
                             type="button"
                             className="btn btn-success"
                             onClick={() => {
-                                this.props.history.push(`/events/${this.props.events.id}/edit`);
+                                this.props.history.push(`/events/${this.props.event.id}/edit`);
                             }}
                              >
                             Edit

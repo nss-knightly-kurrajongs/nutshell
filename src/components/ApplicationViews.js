@@ -6,93 +6,104 @@ import EventManager from "../modules/EventManager";
 import UserManager from "../modules/UserManager";
 import EventEditForm from "./event/EventEditForm";
 
+
+
 class ApplicationViews extends Component {
-  state = {
-      events: [],
-      users: []
-}
+    state = {
+        events: [],
+        users: []
+    }
 
-addEvent = (event) => {
-    return EventManager.addEvent(event)
-    .then(() =>  EventManager.getAll())
-    .then(events => this.setState({
-        events:events
-    }))
-}
+    addEvent = (event) => {
+        return EventManager.addEvent(event)
+            .then(() => EventManager.getAll())
+            .then(events => this.setState({
+                events: events
+            }))
+    }
 
-  componentDidMount() {
-      const newState = {}
+    componentDidMount() {
+        const newState = {}
 
-      EventManager.getAll().then(allEvents => {
-          this.setState({
-              events: allEvents
-          })
-      })
-      UserManager.getAll().then(allUsers => {
-          this.setState({
-              users: allUsers
-          })
-      })
-      .then(() => this.setState(newState))
-  }
-
-  deleteEvent = id => {
-    return fetch(`http://localhost:8088/events/${id}`, {
-        method: "DELETE"
-    })
-        .then(e => e.json())
-        .then(() => fetch(`http://localhost:8088/events`))
-        .then(e => e.json())
-        .then(events => this.setState({
-            events: events
+        EventManager.getAll().then(allEvents => {
+            this.setState({
+                events: allEvents
+            })
         })
-        )
-}
-addEvent = event =>
-EventManager.addNewEvent(event)
-    .then(() => EventManager.getAll())
-    .then(events =>
-        this.setState({
-            events: events
+        UserManager.getAll().then(allUsers => {
+            this.setState({
+                users: allUsers
+            })
         })
-    );
+            .then(() => this.setState(newState))
+    }
+
+    deleteEvent = id => {
+        return fetch(`http://localhost:8088/events/${id}`, {
+            method: "DELETE"
+        })
+            .then(e => e.json())
+            .then(() => fetch(`http://localhost:8088/events`))
+            .then(e => e.json())
+            .then(events => this.setState({
+                events: events
+            })
+            )
+    }
+    addEvent = event =>
+        EventManager.addNewEvent(event)
+            .then(() => EventManager.getAll())
+            .then(events =>
+                this.setState({
+                    events: events
+                })
+            );
+    put(editedEvent) {
+        return fetch(`http://localhost:8088/events/${editedEvent.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedEvent)
+        }).then(data => data.json());
+    }
     updateEvent = (editedEventObject) => {
-        return EventManager.addNewAnimal(editedEventObject)
-        .then(() => EventManager.getAll())
-        .then(events => {
-          this.setState({
-            events: events
-          })
-        });
-      };
+        return EventManager.addNewEvent(editedEventObject)
+            .then(() => EventManager.getAll())
+            .then(events => {
+                this.setState({
+                    events: events
+                })
+            });
+    };
 
-  render() {
-    console.log(this.props.activeUser)
-    return (
+    render() {
+        console.log(this.props.activeUser)
+        return (
             <React.Fragment>
                 <Route exact path="/events" render={(props) => {
                     return <EventList
-                                deleteEvent={this.deleteEvent}
-                                events={this.state.events}
-                                users={this.state.users}
-                                {...props}
-                                />
+                        deleteEvent={this.deleteEvent}
+                        events={this.state.events}
+                        users={this.state.users}
+                        {...props}
+                    />
                 }} />
                 <Route path="/events/new" render={(props) => {
                     return <EventForm {...props}
                         addEvent={this.addEvent}
-                        />
+                    />
                 }} />
-               <Route
-                    path="/events/:eventId(\d+)/edit" render={props => {
+                <Route
+                    path="/events/:eventsId(\d+)/edit" render={props => {
                         return <EventEditForm {...props}
-                        updateEvent={this.updateEvent} />
+                            updateEvent={this.updateEvent} />
                     }}
                 />
 
             </React.Fragment>
         )
-  }
+    }
 }
 
 export default ApplicationViews
