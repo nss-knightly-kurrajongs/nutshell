@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard";
 
 export default class MovieList extends Component {
   render () {
+    let user = Number(sessionStorage.getItem("credentials"))
       return (
           <React.Fragment>
               <div className="MovieButton">
@@ -19,7 +20,11 @@ export default class MovieList extends Component {
       <section className="movies">
 
         {
-          this.props.movies.sort((a,b) => {return b.dateofEntry - a.dateofEntry}).map(movie =>
+          // this.props.movies.sort((a,b) => {return b.dateofEntry - a.dateofEntry})
+
+
+          this.props.movies.filter(mv => mv.userId === user)
+          .map(movie =>
             <MovieCard key={movie.id} movie={movie} {...this.props} userId={movie.userId}/>
         )
         }

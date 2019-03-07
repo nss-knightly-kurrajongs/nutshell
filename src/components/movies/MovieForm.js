@@ -29,7 +29,7 @@ export default class MovieForm extends Component {
       window.alert("Please select a movie");
     } else {
       const movie = {
-        userId: this.state.userId,
+        userId:parseInt(sessionStorage.getItem('credentials')),
         id: this.state.id,
         movieName: this.state.movieName,
         leadActor: this.state.leadActor,
@@ -73,7 +73,6 @@ export default class MovieForm extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="year released">Year Released</label>
-
 
             <input
               type="text"

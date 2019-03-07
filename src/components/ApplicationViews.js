@@ -36,7 +36,7 @@ class ApplicationViews extends Component {
     }
 
     getAllMoviesAgain = () => {
-        fetch("http://localhost:8088/movies")
+        fetch("http://localhost:8088/Movies")
             .then(r => r.json())
             .then(movies => this.setState({ movies: movies }))
     }
@@ -52,13 +52,21 @@ class ApplicationViews extends Component {
       };
 
 
+
+
     componentDidMount() {
 
         const newState = {}
         console.log("componentDidMount -- ApplicationViews")
 
         MovieManager.getAll()
-            .then(movies => newState.movies = movies)
+            .then(movies => newState.movies = movies).then(() => {
+                this.setState(newState)
+            })
+
+
+
+
     }
 
 

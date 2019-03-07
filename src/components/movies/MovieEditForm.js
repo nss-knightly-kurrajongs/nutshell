@@ -29,6 +29,7 @@ export default class MovieEditForm extends Component {
           id: this.props.match.params.MovieId,
           movieName: this.state.movieName,
           leadActor: this.state.leadActor,
+          yearReleased: this.state.yearReleased,
           userId: parseInt(this.state.userId)
         };
 
@@ -85,11 +86,11 @@ export default class MovieEditForm extends Component {
                 required
                 className="form-control"
                 onChange={this.handleFieldChange}
-                id="leadActor"
+                id="yearReleased"
                 value = {this.state.yearReleased}
               />
             </div>
-            
+
 
             <button
               type="submit"
