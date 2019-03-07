@@ -9,7 +9,11 @@ class ApplicationViews extends Component {
     state = {
         movies: [],
         leadActor: [],
-        yearReleased: []
+        yearReleased: [],
+        id: [],
+        userId: [],
+        dateofEntry: []
+
     }
 
 
@@ -62,6 +66,8 @@ class ApplicationViews extends Component {
                         deleteMovie={this.deleteMovie}
                         loadMovies={this.getAllMovies}
                         name={this.state.movieName}
+                        userId={this.state.userId}
+                        dateofEntry={this.state.dateofEntry}
 
                     />
 
@@ -70,6 +76,7 @@ class ApplicationViews extends Component {
                     return <MovieForm {...props}
                         addMovie={this.addMovie}
                         movies={this.state.movies}
+                        userId={this.state.userId}
                         />
                 }} />
                  {/* <Route path="/movies/:movieId(\d+)" render={(props) => {

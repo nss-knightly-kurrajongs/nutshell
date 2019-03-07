@@ -8,7 +8,8 @@ export default class MovieForm extends Component {
     leadActor: "",
     yearReleased: "",
     id: "",
-    date: ""
+    dateOfEntry: "",
+    userId: ""
   };
 
   // Update state whenever an input field is edited
@@ -28,13 +29,15 @@ export default class MovieForm extends Component {
       window.alert("Please select a movie");
     } else {
       const movie = {
+        userId: this.state.userId,
+        id: this.state.id,
         movieName: this.state.movieName,
         leadActor: this.state.leadActor,
         yearReleased: this.state.yearReleased,
-        date: Math.floor(Date.now() / 1000)
+        dateOfEntry: Math.floor(Date.now() / 1000)
       };
 
-      // Create the animal and redirect user to animal list
+      // Create the movie and redirect user to the movie list
       this.props
         .addMovie(movie)
         .then(() => this.props.history.push("/movies"));
@@ -44,6 +47,7 @@ export default class MovieForm extends Component {
   render() {
     return (
       <React.Fragment>
+        {this.state.dateOfEntry}
         <form className="movieForm">
           <div className="form-group">
             <label htmlFor="movieName">Movie Name</label>

@@ -13,8 +13,9 @@ export default class MovieCard extends Component {
                   <div> title: {this.props.movie.movieName}</div>
                   <div> lead actor: {this.props.movie.leadActor}</div>
                   <div> year of release: {this.props.movie.yearReleased}</div>
+                 
 
-                        <Link className="nav-link" to={`/movies/${this.props.movie.id}`}>Details</Link>
+                        <Link className="nav-link" to={`/movies/${this.props.movie.id}`}>Edit</Link>
                         <a href="#"
                             onClick={() => this.props.deleteMovie(this.props.movie.id)}
                             className="card-link">Delete</a>

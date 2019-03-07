@@ -12,15 +12,15 @@ export default class MovieList extends Component {
                           onClick={() => {
                               this.props.history.push("/movies/new")}
                           }>
-                      Add a New Movie
+                      Add a Favorite Movie
                   </button>
 
               </div>
       <section className="movies">
 
         {
-          this.props.movies.sort((a,b) => {return b.yearReleased - a.yearReleased}).map(movie =>
-            <MovieCard key={movie.id} movie={movie} {...this.props} />
+          this.props.movies.sort((a,b) => {return b.dateofEntry - a.dateofEntry}).map(movie =>
+            <MovieCard key={movie.id} movie={movie} {...this.props} userId={movie.userId}/>
         )
         }
       </section>
