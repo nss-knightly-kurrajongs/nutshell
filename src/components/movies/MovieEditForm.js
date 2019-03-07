@@ -9,7 +9,7 @@ export default class MovieEditForm extends Component {
       yearReleased: "",
       dateofEntry: "",
       id: "",
-      userId: ""
+      userId: parseInt(sessionStorage.getItem("credentials"))
     }
 
 
@@ -22,25 +22,29 @@ export default class MovieEditForm extends Component {
     updateExistingMovie = evt => {
       evt.preventDefault()
 
-      if (this.state.employee === "") {
+      if (this.state.movieName === "") {
         window.alert("Please select a Movie");
       } else {
         const editedMovie = {
-          id: this.props.match.params.MovieId,
+          id: this.props.match.params.movieId,
           movieName: this.state.movieName,
           leadActor: this.state.leadActor,
           yearReleased: this.state.yearReleased,
-          userId: parseInt(this.state.userId)
+          dateofEntry: this.state.dateofEntry,
+          userId: parseInt(sessionStorage.getItem("credentials"))
         };
 
     this.props.updateMovie(editedMovie)
     .then(() => this.props.history.push("/movies"))
+
     }
   }
 
     componentDidMount() {
-     MovieManager.get(this.props.match.params.MovieId)
+
+     MovieManager.get(this.props.match.params.movieId)
       .then(movie => {
+        console.log(movie)
         this.setState({
           movieName: movie.movieName,
           leadActor: movie.leadActor,
@@ -50,6 +54,7 @@ export default class MovieEditForm extends Component {
           dateofEntry: movie.dateofEntry
         });
       });
+
     }
 
 

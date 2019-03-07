@@ -51,6 +51,21 @@ class ApplicationViews extends Component {
         });
       };
 
+    getMovieToEdit=(id) => {
+        return MovieManager.get(id).then(movie => this.setState({
+            movie: movie
+        }))
+    }
+
+    editMovie=(movie)=> {
+        return MovieManager.updateMovie(movie).then(() => {
+            return MovieManager.getAll()
+        }).then(movies => this.setState(
+            {
+                movies: movies
+            }
+        ))
+    }
 
 
 
@@ -63,9 +78,6 @@ class ApplicationViews extends Component {
             .then(movies => newState.movies = movies).then(() => {
                 this.setState(newState)
             })
-
-
-
 
     }
 
@@ -102,7 +114,7 @@ class ApplicationViews extends Component {
                 }} /> */}
                 <Route
                     path="/movies/:movieId(\d+)/edit" render={props => {
-                        return <MovieEditForm {...props} movies={this.state.movies} updateMovie={this.updateMovie} />
+                        return <MovieEditForm {...props} movies={this.state.movies} updateMovie={this.updateMovie} getMovieToEdit={this.getMovieToEdit} edit={this.editMovie}/>
                     }}
                 />
 

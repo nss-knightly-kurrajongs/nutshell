@@ -4,6 +4,7 @@ export default {
   get(id) {
     return fetch(`${remoteURL}/movies/${id}`).then(e => e.json())
   },
+  
   getAll() {
     return fetch(`${remoteURL}/movies`).then(e => e.json())
   },
