@@ -196,7 +196,7 @@ addMovie = movie =>
             .then(() => ChatManager.getAll())
             .then(chats => newState.chats = chats)
                
-    
+    }
     
     render() {
         console.log(this.props.activeUser)
@@ -292,8 +292,8 @@ addMovie = movie =>
                     }}
                   />
             </React.Fragment>
-        )
-                }}}
+        )}
+                }
 
 
 

@@ -83,7 +83,6 @@ export default class NewsForm extends Component {
             <label htmlFor="timestamp">timestamp</label>
             <input
               type="text"
-              value={moment().format('LT')}
               required
               className="form-control"
               onChange={this.handleFieldChange}

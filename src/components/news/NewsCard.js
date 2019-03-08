@@ -12,7 +12,7 @@ class NewsCard extends Component {
                     <div className="card-body">
                         <h5 className="card-title">
                             <div>{this.props.News.newsTitle}</div>
-                            <div>{this.props.News.timeStamp}</div>
+                            <div>{Date.now()}</div>
                             <div>{this.props.News.synopsis}</div>
                             <div>{this.props.News.url}</div>
                             <button
