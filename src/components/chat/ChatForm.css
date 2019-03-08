@@ -7,12 +7,10 @@
 .form-control {
     width:50%
 }
-/* .form-group {
-    flex-wrap:wrap;
-    flex-direction: row ;
-    justify-content: flex-start
-} */
 
+.chats{
+    overflow:scroll; height:200px;
+}
 
 #submitbutton{
     width:100%;
