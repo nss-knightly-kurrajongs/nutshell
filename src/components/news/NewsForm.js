@@ -25,7 +25,7 @@ export default class NewsForm extends Component {
   constructNewNews = evt => {
     evt.preventDefault()
     const News = {
-      id: this.props.match.params.newsId,
+      id: this.props.match.params.id,
       newsTitle: this.state.newsTitle,
       synopsis: this.state.synopsis,
       url: this.state.url,

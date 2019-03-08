@@ -22,7 +22,7 @@ export default class AnimalEditForm extends Component {
       evt.preventDefault()
 
         const editedNews = {
-          id: this.props.match.params.newsId,
+          id: this.props.match.params.id,
           newsTitle: this.state.newsTitle,
           synopsis: this.state.synopsis,
           url: this.state.url,
