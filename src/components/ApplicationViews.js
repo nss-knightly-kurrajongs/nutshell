@@ -7,22 +7,35 @@ import NewsList from './news/NewsList'
 import NewsDetail from './news/NewsDetail'
 import NewsForm from './news/NewsForm';
 import NewsEditForm from './news/NewsEditForm';
-/////task///////
-import TaskList from "./task/TaskList"
-import taskManager from "../modules/taskManager"
-import TaskAddForm from "./task/taskAddForm";
-import TaskEditForm from "./task/taskEditForm"
 ///////chats/////////
 import ChatList from './chat/ChatList'
 import ChatForm from './chat/ChatForm'
 import ChatFormEdit from './chat/ChatFormEdit'
 import ChatManager from '../modules/ChatManager'
+/////task///////
+import TaskList from "./task/TaskList"
+import taskManager from "../modules/taskManager"
+import TaskAddForm from "./task/taskAddForm";
+import TaskEditForm from "./task/taskEditForm"
+
+import MovieList from "./movies/MovieList"
+import MovieForm from "./movies/MovieForm"
+import MovieManager from "../modules/MovieManager"
+import MovieEditForm from "./movies/MovieEditForm"
+
 class ApplicationViews extends Component {
     state = {
         news: [],
         tasks: [],
         chats: [],
-        users: []
+        users: [],
+        movies: [],
+        leadActor: [],
+        yearReleased: [],
+        id: [],
+        userId: [],
+        dateofEntry: [],
+
     }
     aUserId = this.props.activeUserId()
     
@@ -118,6 +131,56 @@ class ApplicationViews extends Component {
                     tasks: tasks
                 }))
     }
+//////////movies/////////////
+addMovie = movie =>
+    MovieManager.post(movie)
+      .then(() => MovieManager.getAll())
+      .then(movies =>
+        this.setState({
+          movies: movies
+        })
+      );
+
+  deleteMovie = (id) => {
+    return MovieManager.removeAndList(id)
+      .then(movies => this.setState({
+        movies: movies
+      })
+      )
+  }
+
+  getAllMoviesAgain = () => {
+    fetch("http://localhost:8088/Movies")
+      .then(r => r.json())
+      .then(movies => this.setState({ movies: movies }))
+  }
+
+  updateMovie = (editedMovieObject) => {
+    return MovieManager.put(editedMovieObject)
+      .then(() => MovieManager.getAll())
+      .then(movies => {
+        this.setState({
+          movies: movies
+        })
+      });
+  };
+
+  getMovieToEdit = (id) => {
+    return MovieManager.get(id).then(movie => this.setState({
+      movie: movie
+    }))
+  }
+
+  editMovie = (movie) => {
+    return MovieManager.updateMovie(movie).then(() => {
+      return MovieManager.getAll()
+    }).then(movies => this.setState(
+      {
+        movies: movies
+      }
+    ))
+  }
+
 
     componentDidUpdate() {
     }
@@ -132,8 +195,9 @@ class ApplicationViews extends Component {
             .then((tasks) => newState.tasks = tasks)
             .then(() => ChatManager.getAll())
             .then(chats => newState.chats = chats)
-    }
-
+               
+    
+    
     render() {
         console.log(this.props.activeUser)
         return (
@@ -201,10 +265,41 @@ class ApplicationViews extends Component {
                         editUpdatedTask={this.editUpdatedTask}
                         {...props} />
                 }} />
+                <Route exact path="/movies" render={(props) => {
+                    return <MovieList
+                      {...props}
+                      movies={this.state.movies}
+                      deleteMovie={this.deleteMovie}
+                      loadMovies={this.getAllMovies}
+                      name={this.state.movieName}
+                      userId={this.state.userId}
+                      dateofEntry={this.state.dateofEntry}
+          
+                    />
+          
+                  }} />
+                  <Route path="/movies/new" render={(props) => {
+                    return <MovieForm {...props}
+                      addMovie={this.addMovie}
+                      movies={this.state.movies}
+                      userId={this.state.userId}
+                    />
+                  }} />
+          
+                  <Route
+                    path="/movies/:movieId(\d+)/edit" render={props => {
+                      return <MovieEditForm {...props} movies={this.state.movies} updateMovie={this.updateMovie} getMovieToEdit={this.getMovieToEdit} edit={this.editMovie} />
+                    }}
+                  />
             </React.Fragment>
         )
-    }
-}
+                }}}
+
+
+
+
+
+
 
 
 
