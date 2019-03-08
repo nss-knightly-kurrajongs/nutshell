@@ -92,7 +92,6 @@ export default class NewsForm extends Component {
           <div className="form-group">
             <input
               type="hidden"
-              value={}
               required
               className="form-control"
               onChange={this.handleFieldChange}
