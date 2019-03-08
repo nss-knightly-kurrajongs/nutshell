@@ -1,21 +1,21 @@
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
+//////news////////////
 import NewsManager from "../modules/NewsManager"
 import NewsList from './news/NewsList'
 import NewsDetail from './news/NewsDetail'
 import NewsForm from './news/NewsForm';
 import NewsEditForm from './news/NewsEditForm';
-
+/////task///////
 import TaskList from "./task/TaskList"
 import taskManager from "../modules/taskManager"
 import TaskAddForm from "./task/taskAddForm";
 import TaskEditForm from "./task/taskEditForm"
-import Chat from './chat/Chat'
+///////chats/////////
 import ChatList from './chat/ChatList'
 import ChatForm from './chat/ChatForm'
 import ChatFormEdit from './chat/ChatFormEdit'
 import ChatManager from '../modules/ChatManager'
-import UserManager from '../modules/UserManager'
 class ApplicationViews extends Component {
     state = {
         news: [],
@@ -24,7 +24,7 @@ class ApplicationViews extends Component {
         users: []
     }
     aUserId = this.props.activeUserId()
-
+////// news //////
     removeNews = (id) =>
         NewsManager.delete(id)
             .then(NewsManager.getAll)
@@ -49,6 +49,10 @@ class ApplicationViews extends Component {
                 })
             )
     }
+    
+    getAllNewsAgain = () =>
+        NewsManager.getAll().then(news => this.setState({ news: news }))
+/////////task/////////
     addTask = task => {
         return taskManager.addTask(task)
             .then(() => {
@@ -79,7 +83,7 @@ class ApplicationViews extends Component {
                     tasks: tasks
                 }))
     }
-
+///////////chat/////////////
     addChat = (chat) => {
         return ChatManager.addChat(chat)
             .then(() => ChatManager.getAll())
@@ -106,10 +110,6 @@ class ApplicationViews extends Component {
             .then(chats => this.setState({ chats: chats }))
     }
 
-    getAllNewsAgain = () =>
-        NewsManager.getAll().then(news => this.setState({ news: news }))
-
-
     componentDidUpdate() {
     }
 
@@ -128,6 +128,7 @@ class ApplicationViews extends Component {
     render() {
         return (
             <React.Fragment>
+                {/* news */}
                 <Route exact path="/news" render={(props) => {
                     return <NewsList news={this.state.news}
                         removeNews={this.removeNews}
@@ -152,6 +153,7 @@ class ApplicationViews extends Component {
                         addNews={this.addNews}
                     />
                 }} />
+                {/* chats */}
                 <Route path="/chats" render={(props) => {
                     return <React.Fragment>
                         <ChatList {...props}
@@ -163,7 +165,6 @@ class ApplicationViews extends Component {
                             addChat={this.addChat} />
                     </React.Fragment>
                 }} />
-
                 <Route path="/chats/:chatId(\d+)/edit" render={props => {
 
                     return <ChatFormEdit {...props}
@@ -171,12 +172,7 @@ class ApplicationViews extends Component {
                         updateChat={this.updateChat} />
 
                 }} />
-                {/* <Route exact path="/" render={(props) => {
-                    return <TaskList
-                        tasks={this.state.tasks}
-                        {...props}/>
-                }} /> */}
-
+                {/* tasks */}
                 <Route exact path="/tasks" render={(props) => {
                     return <TaskList
                         tasks={this.state.tasks}
