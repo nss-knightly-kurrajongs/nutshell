@@ -20,7 +20,7 @@ export default class  extends Component {
                 this.props.chats.map(chat =>
                     <div key={chat.id}>
                         {chat.message}
-                        {chat.user.username}
+                        {chat.username}
                         <button
                             type="button"
                             className="btn btn-success"
