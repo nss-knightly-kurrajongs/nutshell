@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import MovieList from "./movies/MovieList"
 import MovieForm from "./movies/MovieForm"
-import MovieDetail from "./movies/MovieDetail"
+
 import MovieManager from "../modules/MovieManager"
 import MovieEditForm from "./movies/MovieEditForm"
 
@@ -109,9 +109,7 @@ class ApplicationViews extends Component {
                         userId={this.state.userId}
                     />
                 }} />
-                {/* <Route path="/movies/:movieId(\d+)" render={(props) => {
-                    return <MovieDetail {...props} deleteMovie={this.deleteMovie} movie={this.state.movie} id={this.state.id}/>
-                }} /> */}
+
                 <Route
                     path="/movies/:movieId(\d+)/edit" render={props => {
                         return <MovieEditForm {...props} movies={this.state.movies} updateMovie={this.updateMovie} getMovieToEdit={this.getMovieToEdit} edit={this.editMovie}/>
