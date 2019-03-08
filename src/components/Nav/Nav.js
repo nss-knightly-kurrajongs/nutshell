@@ -16,6 +16,10 @@ class Nav extends Component {
               Nutshell
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/chats">Chat Room
+            </Link>
+          </li>
         </ul>
         <a className="nav-link">Aloha 🌺 {this.props.activeUser.username}</a>
         <button

@@ -1,0 +1,20 @@
+.chatForm {
+    flex-wrap:wrap;
+    flex-direction: row ;
+    justify-content: space-around
+}
+
+.form-control {
+    width:50%
+}
+/* .form-group {
+    flex-wrap:wrap;
+    flex-direction: row ;
+    justify-content: flex-start
+} */
+
+
+#submitbutton{
+    width:100%;
+    color:red
+}
