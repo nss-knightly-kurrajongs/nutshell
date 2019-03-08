@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import moment from "moment"
 
 export default class NewsForm extends Component {
   // Set initial state
@@ -18,6 +18,7 @@ export default class NewsForm extends Component {
     this.setState(stateToChange);
   }
 
+
   /*
         Local method for validation, creating animal object, and
         invoking the function reference passed from parent component
@@ -30,7 +31,7 @@ export default class NewsForm extends Component {
       synopsis: this.state.synopsis,
       url: this.state.url,
       timestamp: this.state.timestamp,
-      userId: this.state.userId
+      userId:parseInt(sessionStorage.getItem('credentials'))
     }
 
     // Create the animal and redirect user to animal list
@@ -82,20 +83,12 @@ export default class NewsForm extends Component {
             <label htmlFor="timestamp">timestamp</label>
             <input
               type="text"
+              value={moment().format('LT')}
               required
               className="form-control"
               onChange={this.handleFieldChange}
               id="timestamp"
               placeholder="timestamp"
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="hidden"
-              required
-              className="form-control"
-              onChange={this.handleFieldChange}
-              id="userId"
             />
           </div>
           <button

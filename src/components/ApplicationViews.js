@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
+
 //////news////////////
 import NewsManager from "../modules/NewsManager"
 import NewsList from './news/NewsList'
@@ -24,7 +25,13 @@ class ApplicationViews extends Component {
         users: []
     }
     aUserId = this.props.activeUserId()
+    
 ////// news //////
+    removeNews = (id) =>
+        NewsManager.delete(id)
+            .then(NewsManager.getAll)
+            .then(news => this.setState({ news: news }))
+
     removeNews = (id) =>
         NewsManager.delete(id)
             .then(NewsManager.getAll)
@@ -52,7 +59,35 @@ class ApplicationViews extends Component {
     
     getAllNewsAgain = () =>
         NewsManager.getAll().then(news => this.setState({ news: news }))
-/////////task/////////
+
+///////////chat/////////////
+    addChat = (chat) => {
+        return ChatManager.addChat(chat)
+            .then(() => ChatManager.getAll())
+            .then(chats => this.setState({
+                chats: chats
+            })
+            )
+    }
+
+    updateChat = (chat) => {
+        return ChatManager.updateChat(chat)
+            .then(() => ChatManager.getAll())
+            .then(chats => this.setState({
+                chats: chats
+            })
+            )
+    }
+    deleteChatMessage = (id) => {
+        fetch(`http://localhost:8088/chats/${id}`, {
+            "method": "DELETE"
+        })
+            .then(() => fetch("http://localhost:8088/chats?_expand=user"))
+            .then(r => r.json())
+            .then(chats => this.setState({ chats: chats }))
+    }
+
+    /////////task/////////
     addTask = task => {
         return taskManager.addTask(task)
             .then(() => {
@@ -83,32 +118,6 @@ class ApplicationViews extends Component {
                     tasks: tasks
                 }))
     }
-///////////chat/////////////
-    addChat = (chat) => {
-        return ChatManager.addChat(chat)
-            .then(() => ChatManager.getAll())
-            .then(chats => this.setState({
-                chats: chats
-            })
-            )
-    }
-
-    updateChat = (chat) => {
-        return ChatManager.updateChat(chat)
-            .then(() => ChatManager.getAll())
-            .then(chats => this.setState({
-                chats: chats
-            })
-            )
-    }
-    deleteChatMessage = (id) => {
-        fetch(`http://localhost:8088/chats/${id}`, {
-            "method": "DELETE"
-        })
-            .then(() => fetch("http://localhost:8088/chats?_expand=user"))
-            .then(r => r.json())
-            .then(chats => this.setState({ chats: chats }))
-    }
 
     componentDidUpdate() {
     }
@@ -126,6 +135,7 @@ class ApplicationViews extends Component {
     }
 
     render() {
+        console.log(this.props.activeUser)
         return (
             <React.Fragment>
                 {/* news */}
