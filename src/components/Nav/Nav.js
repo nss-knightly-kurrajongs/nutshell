@@ -14,11 +14,11 @@ class Nav extends Component {
           <li className="nav-item">
             <Link className="nav-link" to="/">Nutshell</Link>
           </li>
-              <li className="nav-item">
-            <Link className="nav-link" to="/events">Events</Link>
-          </li>
           <li className="nav-item">
             <Link className="nav-link" to="/news">News</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/events">Events</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/tasks">Tasks</Link>
@@ -31,7 +31,7 @@ class Nav extends Component {
             </Link>
           </li>
         </ul>
-            <a className="nav-link">Aloha 🌺 {this.props.activeUser.username}</a>
+        <a className="nav-link">Aloha 🌺 {this.props.activeUser.username}</a>
         <button
           type="button"
           className="btn btn-outline-info"
